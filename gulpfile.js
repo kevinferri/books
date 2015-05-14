@@ -8,13 +8,6 @@ gulp.task('js', function() {
   .pipe(gulp.dest('build/js'));
 });
 
-// Uglifies css
-gulp.task('css', function() {
-  gulp.src('./bower_components/materialize/dist/css/materialize.css')
-  .pipe(uglify())
-  .pipe(gulp.dest('build/css'));
-});
-  
 // Watches js
 gulp.task('watch', function() {
   gulp.watch('./public/javascripts/*.js', ['scripts']);
