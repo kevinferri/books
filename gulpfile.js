@@ -2,20 +2,22 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 
 // Uglifies js
-gulp.task('scripts', function() {
-  gulp.src('./public/javascripts/*.js')
+gulp.task('js', function() {
+  gulp.src('./bower_components/materialize/dist/js/materialize.js')
   .pipe(uglify())
   .pipe(gulp.dest('build/js'));
 });
 
 // Uglifies css
-gulp.task('styles', function() {
-  console.log('styles')
+gulp.task('css', function() {
+  gulp.src('./bower_components/materialize/dist/css/materialize.css')
+  .pipe(uglify())
+  .pipe(gulp.dest('build/css'));
 });
-
+  
 // Watches js
 gulp.task('watch', function() {
   gulp.watch('./public/javascripts/*.js', ['scripts']);
 });
 
-gulp.task('default', ['scripts', 'styles', 'watch']);
+gulp.task('default', ['js', 'watch']);
