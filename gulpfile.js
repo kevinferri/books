@@ -22,9 +22,4 @@ gulp.task('fonts', function() {
   .pipe(gulp.dest('build/fonts'));
 });
 
-// Watches js
-gulp.task('watch', function() {
-  gulp.watch('./public/javascripts/*.js', ['scripts']);
-});
-
-gulp.task('default', ['js', 'css', 'fonts', 'watch']);
+gulp.task('default', ['js', 'css', 'fonts']);
