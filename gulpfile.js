@@ -19,7 +19,7 @@ gulp.task('css', function() {
 // Pipes fonts
 gulp.task('fonts', function() {
   gulp.src('./bower_components/materialize/dist/font/*/*')
-  .pipe(gulp.dest('build/fonts'));
+  .pipe(gulp.dest('build/font'));
 });
 
 gulp.task('default', ['js', 'css', 'fonts']);
