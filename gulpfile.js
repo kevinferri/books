@@ -1,25 +1,50 @@
 var gulp = require('gulp'),
   uglify = require('gulp-uglify'),
-  minifyCss = require('gulp-minify-css');
+  minifyCss = require('gulp-minify-css'),
+  rename = require('gulp-rename');
 
-// Uglifies js
+// Holds all the files we want to use within gulp
+var gulpFiles = {
+  js: [
+    './bower_components/jquery/dist/jquery.js',
+    './bower_components/underscore/underscore.js',
+    './bower_components/backbone/backbone.js',
+    './bower_components/materialize/dist/js/materialize.js',
+  ],
+  css: [
+    './bower_components/materialize/dist/css/materialize.css'
+  ],
+  fonts: [
+    './bower_components/materialize/dist/font/*/*'
+  ]
+};
+
+// Uglifies js, adds .min extension, and sends to /build/js
 gulp.task('js', function() {
-  gulp.src('./bower_components/materialize/dist/js/materialize.js')
-  .pipe(uglify())
-  .pipe(gulp.dest('build/js'));
+  gulpFiles.js.forEach(function(file) {
+    gulp.src(file)
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('build/js'));
+  });
 });
 
-// Minifies css
+// Minifies css, adds .min extension, sends to /build/css
 gulp.task('css', function() {
-  gulp.src('./bower_components/materialize/dist/css/materialize.css')
-  .pipe(minifyCss())
-  .pipe(gulp.dest('build/css'));
+  gulpFiles.css.forEach(function(file) {
+    gulp.src(file)
+    .pipe(minifyCss())
+    .pipe(rename({ extname: '.min.css' })) 
+    .pipe(gulp.dest('build/css'));
+  });
 });
 
-// Pipes fonts
+// Sends fonts to /build/font
 gulp.task('fonts', function() {
-  gulp.src('./bower_components/materialize/dist/font/*/*')
-  .pipe(gulp.dest('build/font'));
+  gulpFiles.fonts.forEach(function(file) {
+    gulp.src(file)
+    .pipe(gulp.dest('build/font'));
+  });
 });
 
 gulp.task('default', ['js', 'css', 'fonts']);
