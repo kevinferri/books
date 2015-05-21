@@ -1,4 +1,4 @@
 module.exports = {
-  'local': 'mongodb://localhost/books',
+  'development': 'mongodb://localhost/books',
   'test': 'mongodb://localhost/test',
 };

@@ -8,50 +8,20 @@ var apiRoutes = require('./api/routes');
 var mongoose = require('mongoose');
 var db = require('./config/db')
 var app = express();
-var debug = require('debug')('nyc-events');
+var debug = require('debug')('books');
 
-mongoose.connect(db['local']);
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+mongoose.connect(db.development);
 
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(__dirname + '/src/app'));
 
 app.use('/api', apiRoutes);
-
-/// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-/// error handlers
-
-// development error handler
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-// production error handler
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+app.use('*', function(req, res) {
+  res.sendfile(__dirname + '/src/app/index.html');
 });
 
 app.set('port', process.env.PORT || 3000);
