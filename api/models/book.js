@@ -5,6 +5,10 @@ var bookSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  description: {
+    type: String,
+    required: false,
+  },
   author: {
     type: String,
     required: true
@@ -13,7 +17,19 @@ var bookSchema = mongoose.Schema({
     type: String,
     required: false,
   },
-  pages: {
+  publishedDate: {
+    type: String,
+    required: false,
+  },
+  categories: {
+    type: Array,
+    required: false
+  },
+  averageRating: {
+    type: Number,
+    required: false
+  },
+  pageCount: {
     type: Number,
     required: false,
   },

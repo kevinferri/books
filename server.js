@@ -17,11 +17,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(express.static(__dirname + '/src/app'));
+app.use(express.static(__dirname + '/src/build'));
 
 app.use('/api', apiRoutes);
-app.use('*', function(req, res) {
-  res.sendfile(__dirname + '/src/app/index.html');
+app.get('*', function(req, res) {
+  res.sendfile(path.resolve(__dirname + '/src/build/views/index.html'));
 });
 
 app.set('port', process.env.PORT || 3000);

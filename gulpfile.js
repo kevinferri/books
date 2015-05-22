@@ -1,7 +1,8 @@
-var gulp = require('gulp'),
-  uglify = require('gulp-uglify'),
-  minifyCss = require('gulp-minify-css'),
-  rename = require('gulp-rename');
+var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var minifyCss = require('gulp-minify-css');
+var rename = require('gulp-rename');
+var minifyHTML = require('gulp-minify-html');
 
 // Holds all the files we want to use within gulp
 var gulpFiles = {
@@ -16,6 +17,9 @@ var gulpFiles = {
   ],
   fonts: [
     './src/app/bower_components/materialize/dist/font/*/*'
+  ],
+  html: [
+    './src/app/views/*'
   ]
 };
 
@@ -47,4 +51,12 @@ gulp.task('fonts', function() {
   });
 });
 
-gulp.task('default', ['js', 'css', 'fonts']);
+gulp.task('html', function() {
+  gulpFiles.html.forEach(function(file) {
+    gulp.src(file)
+    .pipe(minifyHTML())
+    .pipe(gulp.dest('src/build/views'));
+  });
+});
+
+gulp.task('default', ['js', 'css', 'fonts', 'html']);
