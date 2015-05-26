@@ -23,7 +23,7 @@ app.use(express.static(__dirname + '/src/build'));
 
 app.use('/api', apiRoutes);
 app.get('*', function(req, res) {
-  res.sendfile(path.resolve(__dirname + '/src/build/views/index.html'));
+  res.sendfile(path.resolve(__dirname + '/src/build/main.html'));
 });
 
 app.set('port', process.env.PORT || 3000);
