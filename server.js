@@ -12,7 +12,7 @@ var debug = require('debug')('books');
 
 var env = process.env.NODE_ENV || 'development';
 
-mongoose.connect(db.env);
+mongoose.connect(db[env]);
 
 app.use(favicon());
 app.use(logger('dev'));
