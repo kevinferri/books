@@ -1,5 +1,5 @@
 {
-  "name": "nyc-events",
+  "name": "books",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -16,7 +16,6 @@
     "static-favicon": "~1.0.0"
   },
   "devDependencies": {
-    "backbone": "^1.2.0",
     "gulp": "^3.8.11",
     "gulp-minify-css": "^1.1.1",
     "gulp-minify-html": "^1.0.2",
