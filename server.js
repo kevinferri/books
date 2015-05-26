@@ -10,7 +10,9 @@ var db = require('./config/db')
 var app = express();
 var debug = require('debug')('books');
 
-mongoose.connect(db.development);
+var env = process.env.NODE_ENV || 'development';
+
+mongoose.connect(db.env);
 
 app.use(favicon());
 app.use(logger('dev'));
