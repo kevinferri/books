@@ -3,12 +3,16 @@ var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var minifyHTML = require('gulp-minify-html');
+var sass = require('gulp-sass');
 
 // Holds all the files we want to use within gulp
 var gulpFiles = {
   html: [
     './src/app/main.html',
     './src/app/views/*.html'
+  ],
+  sass: [
+    './src/app/sass/*.scss'
   ],
   bowerJs: [
     './src/app/bower_components/jquery/dist/jquery.min.js',
@@ -24,8 +28,19 @@ var gulpFiles = {
   ]
 };
 
+// Complies sass to css and minifies the css
+gulp.task('sass', function () {
+  gulpFiles.sass.forEach(function(file) {
+    console.log(file);
+    gulp.src(file)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(minifyCss())
+    .pipe(gulp.dest('src/build/css'));
+  });
+});
+
 // Uglifies js, adds .min extension, and sends to /build/js
-gulp.task('js', function() {
+gulp.task('bowerJs', function() {
   gulpFiles.bowerJs.forEach(function(file) {
     gulp.src(file)
     .pipe(gulp.dest('src/build/js'));
@@ -33,7 +48,7 @@ gulp.task('js', function() {
 });
 
 // Minifies css, adds .min extension, sends to /build/css
-gulp.task('css', function() {
+gulp.task('bowerCss', function() {
   gulpFiles.bowerCss.forEach(function(file) {
     gulp.src(file)
     .pipe(minifyCss())
@@ -64,4 +79,4 @@ gulp.task('html', function() {
   });
 });
 
-gulp.task('default', ['js', 'css', 'fonts', 'html']);
+gulp.task('default', ['bowerJs', 'bowerCss', 'fonts', 'html', 'sass']);
