@@ -14,6 +14,9 @@ var gulpFiles = {
   sass: [
     './src/app/sass/*.scss'
   ],
+  js: [
+    './src/app/app.js'
+  ],
   bowerJs: [
     './src/app/bower_components/jquery/dist/jquery.min.js',
     './src/app/bower_components/underscore/underscore-min.js',
@@ -31,11 +34,20 @@ var gulpFiles = {
 // Complies sass to css and minifies the css
 gulp.task('sass', function () {
   gulpFiles.sass.forEach(function(file) {
-    console.log(file);
     gulp.src(file)
     .pipe(sass().on('error', sass.logError))
     .pipe(minifyCss())
+    .pipe(rename({ extname: '.min.css' })) 
     .pipe(gulp.dest('src/build/css'));
+  });
+});
+
+gulp.task('js', function () {
+  gulpFiles.js.forEach(function(file) {
+    gulp.src(file)
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' })) 
+    .pipe(gulp.dest('src/build/js'));
   });
 });
 
@@ -79,4 +91,4 @@ gulp.task('html', function() {
   });
 });
 
-gulp.task('default', ['bowerJs', 'bowerCss', 'fonts', 'html', 'sass']);
+gulp.task('default', ['bowerJs', 'bowerCss', 'fonts', 'html', 'sass', 'js']);
