@@ -1,19 +1,21 @@
 var Book = Backbone.Model.extend({
   defaults: {
-    title: 'foobar',
-    author: 'banana'
+    title: 'Game of Thrones',
+    author: 'George RR Martin'
   }
 });
 
 var BookView = Backbone.View.extend({
-  tagName: 'section',
+  tagName: 'li',
+  
+  template: _.template($('#bookTemplate').html()),
 
   initialize: function() {
     this.render();
   },
 
   render: function() {
-    this.$el.html(this.model.get('title'));
+    this.$el.html(this.template(this.model.toJSON()));
   }
 
 });

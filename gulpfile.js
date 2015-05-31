@@ -91,4 +91,8 @@ gulp.task('html', function() {
   });
 });
 
-gulp.task('default', ['bowerJs', 'bowerCss', 'fonts', 'html', 'sass', 'js']);
+gulp.task('watch', function() {
+  gulp.watch('./src/app/app.js', ['js']);
+});
+
+gulp.task('default', ['bowerJs', 'bowerCss', 'fonts', 'html', 'sass', 'js', 'watch']);
