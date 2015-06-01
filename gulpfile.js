@@ -47,7 +47,7 @@ gulp.task('js', function () {
     gulp.src(file)
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' })) 
-    .pipe(gulp.dest('src/build/js'));
+    .pipe(gulp.dest('build/js'));
   });
 });
 
@@ -55,7 +55,7 @@ gulp.task('js', function () {
 gulp.task('bowerJs', function() {
   gulpFiles.bowerJs.forEach(function(file) {
     gulp.src(file)
-    .pipe(gulp.dest('src/build/js'));
+    .pipe(gulp.dest('build/js'));
   });
 });
 
@@ -65,7 +65,7 @@ gulp.task('bowerCss', function() {
     gulp.src(file)
     .pipe(minifyCss())
     .pipe(rename({ extname: '.min.css' })) 
-    .pipe(gulp.dest('src/build/css'));
+    .pipe(gulp.dest('build/css'));
   });
 });
 
@@ -73,7 +73,7 @@ gulp.task('bowerCss', function() {
 gulp.task('fonts', function() {
   gulpFiles.fonts.forEach(function(file) {
     gulp.src(file)
-    .pipe(gulp.dest('src/build/font'));
+    .pipe(gulp.dest('build/font'));
   });
 });
 
@@ -81,9 +81,9 @@ gulp.task('html', function() {
   gulpFiles.html.forEach(function(file) {
     var dest = '';
     if (file === './src/app/main.html') {
-      dest = 'src/build';
+      dest = 'build';
     } else {
-      dest = 'src/build/views';
+      dest = 'build/views';
     }
     gulp.src(file)
     .pipe(minifyHTML())

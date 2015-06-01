@@ -19,14 +19,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(express.static(__dirname + '/src/build'));
+app.use(express.static(__dirname + '/build'));
 
 app.use('/api', apiRoutes);
 app.get('*', function(req, res) {
-  res.sendfile(path.resolve(__dirname + '/src/build/main.html'));
+  res.sendfile(path.resolve(__dirname + '/build/main.html'));
 });
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 4000);
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
