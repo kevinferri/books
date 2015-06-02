@@ -8,26 +8,26 @@ var sass = require('gulp-sass');
 // Holds all the files we want to use within gulp
 var gulpFiles = {
   html: [
-    './src/app/main.html',
-    './src/app/views/*.html'
+    './src/main.html',
+    './src/views/*.html'
   ],
   sass: [
-    './src/app/sass/*.scss'
+    './src/sass/*.scss'
   ],
   js: [
-    './src/app/app.js'
+    './src/app.js'
   ],
   bowerJs: [
-    './src/app/bower_components/jquery/dist/jquery.min.js',
-    './src/app/bower_components/underscore/underscore-min.js',
-    './src/app/bower_components/backbone/backbone-min.js',
-    './src/app/bower_components/materialize/dist/js/materialize.min.js',
+    './bower_components/jquery/dist/jquery.min.js',
+    './bower_components/underscore/underscore-min.js',
+    './bower_components/backbone/backbone-min.js',
+    './bower_components/materialize/dist/js/materialize.min.js',
   ],
   bowerCss: [
-    './src/app/bower_components/materialize/dist/css/materialize.css'
+    './bower_components/materialize/dist/css/materialize.css'
   ],
   fonts: [
-    './src/app/bower_components/materialize/dist/font/*/*'
+    './bower_components/materialize/dist/font/*/*'
   ]
 };
 
@@ -38,7 +38,7 @@ gulp.task('sass', function () {
     .pipe(sass().on('error', sass.logError))
     .pipe(minifyCss())
     .pipe(rename({ extname: '.min.css' })) 
-    .pipe(gulp.dest('src/build/css'));
+    .pipe(gulp.dest('build/css'));
   });
 });
 
@@ -80,7 +80,7 @@ gulp.task('fonts', function() {
 gulp.task('html', function() {
   gulpFiles.html.forEach(function(file) {
     var dest = '';
-    if (file === './src/app/main.html') {
+    if (file === './src/main.html') {
       dest = 'build';
     } else {
       dest = 'build/views';
@@ -92,7 +92,7 @@ gulp.task('html', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./src/app/app.js', ['js']);
+  gulp.watch('./src/app.js', ['js']);
 });
 
 gulp.task('default', ['bowerJs', 'bowerCss', 'fonts', 'html', 'sass', 'js', 'watch']);

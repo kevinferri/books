@@ -5,7 +5,7 @@
   "authors": [
     "kevinferri <kevinferri@gmail.com>"
   ],
-  "directory" : "app/bower_components",
+  "directory" : "/bower_components",
   "license": "MIT",
   "ignore": [
     "**/.*",
