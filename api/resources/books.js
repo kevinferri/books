@@ -10,8 +10,8 @@ exports.getBooks = function(req, res) {
 
 exports.postBook = function(req, res) {
   helpers.getRequestBody(req, res, function(body) {
-    var q = encodeURIComponent(body.query);
-    googleBookAPI.getGoogleBook('harry%20potter', function(book) {
+    var query = encodeURIComponent(JSON.parse(body).query);
+    googleBookAPI.getGoogleBook(query, function(book) {
       res.json(book);
     });
   });
