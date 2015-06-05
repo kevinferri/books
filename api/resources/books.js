@@ -1,5 +1,5 @@
 var Book = require('../models/book.js');
-var googleBookAPI = require('../lib/google-books-api.js');
+var googleBooksAPI = require('../lib/google-books-api.js');
 var helpers = require('../lib/helpers.js');
 
 exports.getBooks = function(req, res) {
@@ -11,7 +11,7 @@ exports.getBooks = function(req, res) {
 exports.postBook = function(req, res) {
   helpers.getRequestBody(req, res, function(body) {
     var query = encodeURIComponent(JSON.parse(body).query);
-    googleBookAPI.getGoogleBook(query, function(book) {
+    googleBooksAPI.getGoogleBook(query, function(book) {
       res.json(book);
     });
   });
