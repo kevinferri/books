@@ -12,6 +12,7 @@ exports.postBook = function(req, res) {
   helpers.getRequestBody(req, res, function(body) {
     var query = encodeURIComponent(JSON.parse(body).query);
     googleBooksAPI.getGoogleBook(query, function(book) {
+      numBooks = book.length;
       res.json(book);
     });
   });
