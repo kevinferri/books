@@ -8,11 +8,13 @@ exports.getBooks = function(req, res) {
   });
 }
 
-exports.postBook = function(req, res) {
-  helpers.getRequestBody(req, res, function(body) {
-    var query = encodeURIComponent(JSON.parse(body).query);
-    googleBooksAPI.getGoogleBook(query, function(book) {
-      res.json(book);
-    });
+exports.searchBooks = function(req, res) {
+  var query = encodeURIComponent(req.param('q'));
+  googleBooksAPI.getGoogleBook(query, function(books) {
+    if (books.totalItems > 0) {
+      res.json(books);
+    } else {
+      res.json([]);
+    }
   });
 }
