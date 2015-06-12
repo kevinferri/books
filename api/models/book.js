@@ -7,7 +7,7 @@ var bookSchema = mongoose.Schema({
   },
   description: {
     type: String,
-    required: false,
+    required: false
   },
   author: {
     type: String,
@@ -15,11 +15,15 @@ var bookSchema = mongoose.Schema({
   },
   thumbnail: {
     type: String,
-    required: false,
+    required: false
+  },
+  previewLink: {
+    type: String,
+    required: false
   },
   publishedDate: {
     type: String,
-    required: false,
+    required: false
   },
   categories: {
     type: Array,
