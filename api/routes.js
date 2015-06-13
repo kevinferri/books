@@ -6,6 +6,7 @@ module.exports = (function() {
 
   router.get('/books', books.getBooks);
   router.get('/books/search', books.searchBooks);
+  router.post('/books', books.postBook);
   
   return router;
 

@@ -18,3 +18,7 @@ exports.searchBooks = function(req, res) {
     }
   });
 }
+
+exports.postBook = function(req, res) {
+  console.log('Posting...');
+}
