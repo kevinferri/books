@@ -26,7 +26,7 @@ app.get('*', function(req, res) {
   res.sendfile(path.resolve(__dirname + '/build/main.html'));
 });
 
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
   debug('Express server listening on port ' + server.address().port);
