@@ -5,7 +5,7 @@ module.exports = (function() {
   var books = require('./resources/books.js');
 
   router.get('/books', books.getBooks);
-  router.get('/books/search', books.searchBooks);
+  router.get('/books/search', books.searchGoogleBooks);
   router.post('/books', books.postBook);
   
   return router;

@@ -8,11 +8,11 @@ exports.getBooks = function(req, res) {
   });
 }
 
-exports.searchBooks = function(req, res) {
+exports.searchGoogleBooks = function(req, res) {
   var query = encodeURIComponent(req.param('q'));
   googleBooksAPI.getGoogleBook(query, function(books) {
     if (books.totalItems > 0) {
-      res.json(books);
+      res.status(200).json(books);
     } else {
       res.json([]);
     }
@@ -20,5 +20,24 @@ exports.searchBooks = function(req, res) {
 }
 
 exports.postBook = function(req, res) {
-  console.log('Posting...');
+  helpers.getRequestBody(req, res, function(body) {
+    var newBook = new Book({
+      title: body.title,
+      description: body.description,
+      author: body.author,
+      thumbnail: body.thumbnail,
+      previewLink: body.previewLink,
+      publishedDate: body.publishedDate,
+      category: body.category,
+      averageRating: body.averageRating,
+      pageCount: body.pageCount
+    });
+
+    newBook.save(function(err, book) {
+      if (err) {
+        throw err;
+      }
+      res.status(200).json(book);
+    });
+  });
 }

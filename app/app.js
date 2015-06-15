@@ -1,8 +1,13 @@
 var Book = Backbone.Model.extend({
   defaults: {
-    title: 'Game of Thrones',
-    author: 'George RR Martin'
+    title: "title",
+    author: "autor",
+    description: "description"
   }
+});
+
+var BookCollection = Backbone.Collection.extend({
+  model: book
 });
 
 var BookView = Backbone.View.extend({

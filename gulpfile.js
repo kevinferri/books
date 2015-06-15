@@ -8,14 +8,14 @@ var sass = require('gulp-sass');
 // Holds all the files we want to use within gulp
 var gulpFiles = {
   html: [
-    './src/main.html',
-    './src/views/*.html'
+    './app/main.html',
+    './app/views/*.html'
   ],
   sass: [
-    './src/sass/*.scss'
+    './app/sass/*.scss'
   ],
   js: [
-    './src/app.js'
+    './app/app.js'
   ],
   bowerJs: [
     './bower_components/jquery/dist/jquery.min.js',
@@ -80,7 +80,7 @@ gulp.task('fonts', function() {
 gulp.task('html', function() {
   gulpFiles.html.forEach(function(file) {
     var dest = '';
-    if (file === './src/main.html') {
+    if (file === './app/main.html') {
       dest = 'build';
     } else {
       dest = 'build/views';
@@ -92,7 +92,7 @@ gulp.task('html', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./src/app.js', ['js']);
+  gulp.watch('./app/app.js', ['js']);
 });
 
 gulp.task('default', ['bowerJs', 'bowerCss', 'fonts', 'html', 'sass', 'js', 'watch']);
