@@ -5,7 +5,7 @@
   "authors": [
     "kevinferri <kevinferri@gmail.com>"
   ],
-  "directory" : "/bower_components",
+  "directory": "/bower_components",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -15,8 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.3",
     "materialize": "*",
-    "backbone": "~1.2.0"
+    "angular": "~1.4.1"
   }
 }

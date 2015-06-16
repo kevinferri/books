@@ -18,9 +18,7 @@ var gulpFiles = {
     './app/app.js'
   ],
   bowerJs: [
-    './bower_components/jquery/dist/jquery.min.js',
-    './bower_components/underscore/underscore-min.js',
-    './bower_components/backbone/backbone-min.js',
+    './bower_components/angular/angular.min.js',
     './bower_components/materialize/dist/js/materialize.min.js',
   ],
   bowerCss: [
