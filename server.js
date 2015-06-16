@@ -6,13 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var apiRoutes = require('./api/routes');
 var mongoose = require('mongoose');
-var db = require('./config/db')
+var config = require('./api/config.js');
 var app = express();
 var debug = require('debug')('books');
 
 var env = process.env.NODE_ENV || 'development';
 
-mongoose.connect(db[env]);
+mongoose.connect(config.db[env]);
 
 app.use(favicon());
 app.use(logger('dev'));
