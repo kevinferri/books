@@ -53,7 +53,7 @@ gulp.task('js', function () {
 gulp.task('bowerJs', function() {
   gulpFiles.bowerJs.forEach(function(file) {
     gulp.src(file)
-    .pipe(gulp.dest('build/js'));
+    .pipe(gulp.dest('build/js'));2
   });
 });
 
@@ -91,6 +91,7 @@ gulp.task('html', function() {
 
 gulp.task('watch', function() {
   gulp.watch('./app/app.js', ['js']);
+  gulp.watch('./app/main.html', ['html']);
 });
 
 gulp.task('default', ['bowerJs', 'bowerCss', 'fonts', 'html', 'sass', 'js', 'watch']);
