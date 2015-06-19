@@ -13,6 +13,7 @@
     "mongoose": "^4.0.3",
     "morgan": "~1.0.0",
     "request": "^2.55.0",
+    "requirejs": "^2.1.18",
     "static-favicon": "~1.0.0"
   },
   "devDependencies": {
