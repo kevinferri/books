@@ -8,6 +8,16 @@ exports.getBooks = function(req, res) {
   });
 }
 
+exports.getBook = function(req, res) {
+  Book.find({ id: req.params.id }, function(err, book) {
+    if (book) {
+      res.status(200).json(book);
+    } else {
+      res.status(200).json({ 'error': 'No book found' });
+    }
+  });
+}
+
 exports.searchGoogleBooks = function(req, res) {
   var query = encodeURIComponent(req.param('q'));
   googleBooksAPI.getGoogleBook(query, function(books) {
