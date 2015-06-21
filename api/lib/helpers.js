@@ -1,4 +1,4 @@
-exports.getRequestBody = function(req, res, callback) {
+exports.getRequestBody = function(req, res, done) {
   var body = '';
   req.on('data', function (data) {
     body += data;
@@ -7,6 +7,6 @@ exports.getRequestBody = function(req, res, callback) {
     }
   });
   req.on('end', function () {
-    return callback(JSON.parse(body));
+    return done(JSON.parse(body));
   });
 }

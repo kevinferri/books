@@ -4,11 +4,13 @@ module.exports = (function() {
   var router = require('express').Router();
   var books = require('./resources/books.js');
 
+  // Books
   router.get('/books', books.getBooks);
-  router.get('/books/:id', books.getBook);
-  router.get('/books/search', books.searchGoogleBooks);
   router.post('/books', books.postBook);
+
+  // Google books
+  router.get('/googlebooks/:id', books.getGoogleBook);
+  router.get('/googlebooks', books.getGoogleBooks);
   
   return router;
-
 })();

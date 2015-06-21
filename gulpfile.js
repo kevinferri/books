@@ -12,21 +12,10 @@ var gulpFiles = {
     './app/views/*.html'
   ],
   sass: [
-    './app/sass/*.scss'
-  ],
-  js: [
-    './app/app.js'
-  ],
-  bowerJs: [
-    './bower_components/angular/angular.min.js',
-    './bower_components/angular-route/angular-route.min.js',
-    './bower_components/materialize/dist/js/materialize.min.js',
-  ],
-  bowerCss: [
-    './bower_components/materialize/dist/css/materialize.css'
+    './app/sass/*.scss',
   ],
   fonts: [
-    './bower_components/materialize/dist/font/*/*'
+    './node_modules/materialize-css/font/*/*'
   ]
 };
 
@@ -41,33 +30,6 @@ gulp.task('sass', function () {
   });
 });
 
-gulp.task('js', function () {
-  gulpFiles.js.forEach(function(file) {
-    gulp.src(file)
-    .pipe(uglify())
-    .pipe(rename({ extname: '.min.js' })) 
-    .pipe(gulp.dest('build/js'));
-  });
-});
-
-// Uglifies js, adds .min extension, and sends to /build/js
-gulp.task('bowerJs', function() {
-  gulpFiles.bowerJs.forEach(function(file) {
-    gulp.src(file)
-    .pipe(gulp.dest('build/js'));2
-  });
-});
-
-// Minifies css, adds .min extension, sends to /build/css
-gulp.task('bowerCss', function() {
-  gulpFiles.bowerCss.forEach(function(file) {
-    gulp.src(file)
-    .pipe(minifyCss())
-    .pipe(rename({ extname: '.min.css' })) 
-    .pipe(gulp.dest('build/css'));
-  });
-});
-
 // Sends fonts to /build/font
 gulp.task('fonts', function() {
   gulpFiles.fonts.forEach(function(file) {
@@ -76,6 +38,7 @@ gulp.task('fonts', function() {
   });
 });
 
+// Minifies html
 gulp.task('html', function() {
   gulpFiles.html.forEach(function(file) {
     var dest = '';
@@ -90,9 +53,4 @@ gulp.task('html', function() {
   });
 });
 
-gulp.task('watch', function() {
-  gulp.watch('./app/app.js', ['js']);
-  gulp.watch('./app/main.html', ['html']);
-});
-
-gulp.task('default', ['bowerJs', 'bowerCss', 'fonts', 'html', 'sass', 'js', 'watch']);
+gulp.task('default', ['html', 'sass', 'fonts']);

@@ -1,9 +1,3 @@
-(function() {
+var angular = require('angular');
 
-  var app = angular.module('books', []);
-
-  app.controller('homeCtrl', ['$scope', function($scope) {
-    
-  }]);
-
-})();
+var app = angular.module('books', []);

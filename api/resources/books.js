@@ -8,17 +8,7 @@ exports.getBooks = function(req, res) {
   });
 }
 
-exports.getBook = function(req, res) {
-  Book.find({ id: req.params.id }, function(err, book) {
-    if (book) {
-      res.status(200).json(book);
-    } else {
-      res.status(200).json({ 'error': 'No book found' });
-    }
-  });
-}
-
-exports.searchGoogleBooks = function(req, res) {
+exports.getGoogleBooks = function(req, res) {
   var query = encodeURIComponent(req.param('q'));
   googleBooksAPI.getGoogleBook(query, function(books) {
     if (books.totalItems > 0) {
@@ -27,6 +17,10 @@ exports.searchGoogleBooks = function(req, res) {
       res.json([]);
     }
   });
+}
+
+exports.getGoogleBook = function(req, res) {
+  console.log('Getting a google book');
 }
 
 exports.postBook = function(req, res) {
@@ -50,4 +44,4 @@ exports.postBook = function(req, res) {
       res.status(200).json(book);
     });
   });
-}
+} 
