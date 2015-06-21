@@ -1,6 +1,6 @@
 # books
 ```
 npm install
-bower install
+npm run build
 gulp
 ```
