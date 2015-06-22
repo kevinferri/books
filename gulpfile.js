@@ -16,6 +16,23 @@ var gulpFiles = {
   ],
   fonts: [
     './node_modules/materialize-css/font/*/*'
+  ],
+  vendorJs: [
+    './node_modules/materialize-css/bin/materialize.js',
+    './node_modules/jquery/dist/jquery.js',
+  ],
+  vendorCss: [
+    './node_modules/materialize-css/bin/materialize.css'
+  ],
+  watch: [
+    {
+      files: ['./app/sass/*.scss'],
+      task: ['sass']
+    },
+    {
+      files: ['./app/main.html', './app/views/*.html'],
+      task: ['html']
+    },
   ]
 };
 
@@ -25,7 +42,7 @@ gulp.task('sass', function () {
     gulp.src(file)
     .pipe(sass().on('error', sass.logError))
     .pipe(minifyCss())
-    .pipe(rename({ extname: '.min.css' })) 
+    .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('build/css'));
   });
 });
@@ -34,7 +51,7 @@ gulp.task('sass', function () {
 gulp.task('fonts', function() {
   gulpFiles.fonts.forEach(function(file) {
     gulp.src(file)
-    .pipe(gulp.dest('build/font'));
+    .pipe(gulp.dest('build/vendor/font'));
   });
 });
 
@@ -53,4 +70,34 @@ gulp.task('html', function() {
   });
 });
 
-gulp.task('default', ['html', 'sass', 'fonts']);
+// Uglifies js, adds .min extension, and sends to /build/js
+gulp.task('vendorJs', function() {
+  gulpFiles.vendorJs.forEach(function(file) {
+    gulp.src(file)
+    .pipe(uglify())
+    .pipe(rename({ extname: '.min.js' }))
+    .pipe(gulp.dest('build/vendor/js'));2
+  });
+});
+
+// Minifies css, adds .min extension, sends to /build/css
+gulp.task('vendorCss', function() {
+  gulpFiles.vendorCss.forEach(function(file) {
+    gulp.src(file)
+    .pipe(minifyCss())
+    .pipe(rename({ extname: '.min.css' })) 
+    .pipe(gulp.dest('build/vendor/css'));
+  });
+});
+
+// Watches 
+gulp.task('watch', function() {
+  gulpFiles.watch.forEach(function(watchItem) {
+    var task = watchItem.task;
+     watchItem.files.forEach(function(file) {
+       gulp.watch(file, task);
+     });
+  });
+});
+
+gulp.task('default', ['html', 'sass', 'fonts', 'vendorJs', 'vendorCss']);

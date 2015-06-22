@@ -4,17 +4,18 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "build": "browserify ./app/app.js | uglifyjs > ./build/bundle.js",
-    "watch": "watchify ./app/app.js  -o ./build/js/bundle.js"
+    "build": "browserify ./app/app.js | uglifyjs > ./build/bundle.min.js",
+    "watch": "watchify ./app/app.js -o 'uglifyjs > ./build/bundle.min.js'"
   },
   "dependencies": {
     "angular": "^1.4.1",
     "angular-route": "^1.4.1",
     "body-parser": "~1.0.0",
+    "bower": "^1.4.1",
     "cookie-parser": "~1.0.1",
     "debug": "~0.7.4",
     "express": "~4.2.0",
-    "foundation": "^4.2.1-1",
+    "jquery": "^2.1.4",
     "materialize-css": "^0.96.1",
     "mongoose": "^4.0.3",
     "morgan": "~1.0.0",
