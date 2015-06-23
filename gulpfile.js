@@ -76,7 +76,7 @@ gulp.task('vendorJs', function() {
     gulp.src(file)
     .pipe(uglify())
     .pipe(rename({ extname: '.min.js' }))
-    .pipe(gulp.dest('build/vendor/js'));2
+    .pipe(gulp.dest('build/vendor/js'));
   });
 });
 
@@ -85,12 +85,12 @@ gulp.task('vendorCss', function() {
   gulpFiles.vendorCss.forEach(function(file) {
     gulp.src(file)
     .pipe(minifyCss())
-    .pipe(rename({ extname: '.min.css' })) 
+    .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('build/vendor/css'));
   });
 });
 
-// Watches 
+// Watches
 gulp.task('watch', function() {
   gulpFiles.watch.forEach(function(watchItem) {
     var task = watchItem.task;
