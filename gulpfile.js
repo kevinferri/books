@@ -37,7 +37,7 @@ var gulpFiles = {
 };
 
 // Complies sass to css and minifies the css
-gulp.task('sass', function () {
+gulp.task('sass', function() {
   gulpFiles.sass.forEach(function(file) {
     gulp.src(file)
     .pipe(sass().on('error', sass.logError))
