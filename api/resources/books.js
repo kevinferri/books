@@ -10,7 +10,10 @@ exports.getBooks = function(req, res) {
 
 exports.getGoogleBooks = function(req, res) {
   var query = encodeURIComponent(req.param('q'));
-  googleBooksAPI.getGoogleBook(query, function(books) {
+  googleBooksAPI.getGoogleBook(query, function(err, books) {
+    if (err) {
+      throw err;
+    }
     if (books.totalItems > 0) {
       res.status(200).json(books);
     } else {
@@ -24,7 +27,10 @@ exports.getGoogleBook = function(req, res) {
 }
 
 exports.postBook = function(req, res) {
-  helpers.getRequestBody(req, res, function(body) {
+  helpers.getRequestBody(req, res, function(err, body) {
+    if (err) {
+      throw err;
+    }
     var newBook = new Book({
       title: body.title,
       description: body.description,
@@ -44,4 +50,4 @@ exports.postBook = function(req, res) {
       res.status(200).json(book);
     });
   });
-} 
+}

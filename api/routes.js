@@ -11,6 +11,6 @@ module.exports = (function() {
   // Google books
   router.get('/googlebooks/:id', books.getGoogleBook);
   router.get('/googlebooks', books.getGoogleBooks);
-  
+
   return router;
 })();

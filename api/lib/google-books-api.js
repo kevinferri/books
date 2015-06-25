@@ -10,11 +10,11 @@ exports.getGoogleBook = function(query, done) {
     }
 
     if (response.statusCode === 404) {
-      return done({ error: 'No google book found' });
+      return done({ error: 'No google book found' }, null);
     }
 
-    if (response.statusCode === 200) { 
-      return done(body);
+    if (response.statusCode === 200) {
+      return done(null, body);
     }
   });
 }

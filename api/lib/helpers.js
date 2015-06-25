@@ -7,6 +7,6 @@ exports.getRequestBody = function(req, res, done) {
     }
   });
   req.on('end', function () {
-    return done(JSON.parse(body));
+    return done(null, JSON.parse(body));
   });
 }
