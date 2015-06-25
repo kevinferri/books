@@ -1,1 +1,26 @@
-<div class="container"></div>
+<div class="container">
+<a href="#/">Home</a>
+ <h3>Search reults for &ldquo;{{ query }}&rdquo;</h3>
+
+ <div class="preloader-wrapper big active">
+   <div class="spinner-layer spinner-blue-only">
+     <div class="circle-clipper left">
+     <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+    </div>
+  </div>
+
+  <article ng-repeat="item in data track by $index">
+    <img ng-src="{{ item.volumeInfo.imageLinks.thumbnail }}">
+    <h5><em>{{ item.volumeInfo.title }}</em> by {{ item.volumeInfo.authors[0] }}</h5>
+    <p>{{ item.volumeInfo.description }}</p>
+    <hr>
+  </article>
+
+</div>

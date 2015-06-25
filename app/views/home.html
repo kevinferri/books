@@ -1,1 +1,18 @@
-<div class="container"></div>
+<div class="container">
+
+  <h1>{{ greeting }}</h1>
+
+  <div class="row">
+    <form ng-submit="searchGoogleBooks()" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text">
+          <label for="email" data-error="wrong" data-success="right">Search for a book title or author</label>
+        </div>
+      </div>
+      <button type="submit" class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons">send</i>
+      </button>
+    </form>
+  </div>
+</div>

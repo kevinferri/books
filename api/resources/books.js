@@ -8,6 +8,7 @@ exports.getBooks = function(req, res) {
   });
 }
 
+// TODO: return books using only the data we care about
 exports.getGoogleBooks = function(req, res) {
   var query = encodeURIComponent(req.param('q'));
   googleBooksAPI.getGoogleBook(query, function(err, books) {
