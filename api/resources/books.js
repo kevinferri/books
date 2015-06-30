@@ -11,7 +11,7 @@ exports.getBooks = function(req, res) {
 // TODO: return books using only the data we care about
 exports.getGoogleBooks = function(req, res) {
   var query = encodeURIComponent(req.param('q'));
-  googleBooksAPI.getGoogleBook(query, function(err, books) {
+  googleBooksAPI.getGoogleBooks(query, function(err, books) {
     if (err) {
       throw err;
     }
@@ -24,7 +24,13 @@ exports.getGoogleBooks = function(req, res) {
 }
 
 exports.getGoogleBook = function(req, res) {
-  console.log('Getting a google book');
+  var id = req.params.id;
+  googleBooksAPI.getGoogleBook(id, function(err, book) {
+    if (err) {
+      throw err;
+    }
+    res.json(book);
+  });
 }
 
 exports.postBook = function(req, res) {

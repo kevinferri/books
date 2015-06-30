@@ -1,6 +1,8 @@
 <div class="container">
-<a href="#/">Home</a>
- <h3>Search reults for &ldquo;{{ query }}&rdquo;</h3>
+  
+  <a href="#/">Home</a>
+
+  <h3>Search results for &ldquo;{{ query }}&rdquo;</h3>
 
  <div class="preloader-wrapper big active">
    <div class="spinner-layer spinner-blue-only">
@@ -16,10 +18,14 @@
     </div>
   </div>
 
-  <article ng-repeat="item in data track by $index">
+  <article class="book" ng-repeat="item in data track by $index">
     <img ng-src="{{ item.volumeInfo.imageLinks.thumbnail }}">
-    <h5><em>{{ item.volumeInfo.title }}</em> by {{ item.volumeInfo.authors[0] }}</h5>
-    <p>{{ item.volumeInfo.description }}</p>
+    <h4><em>{{ item.volumeInfo.title }}</em> by {{ item.volumeInfo.authors[0] }}</h4>
+    <blockquote>{{ item.volumeInfo.description }}</blockquote>
+    <a href="#/googlebooks/{{ item.id }}">Read More</a>
+    <p>{{ item.volumeInfo.pageCount }} pages</p>
+    <p>Average rating of {{ item.volumeInfo.averageRating }}</p>
+    <p>Published in {{ item.volumeInfo.publishedDate }}</p>
     <hr>
   </article>
 

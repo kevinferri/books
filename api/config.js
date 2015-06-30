@@ -4,6 +4,6 @@ module.exports = {
     'test': 'mongodb://localhost/test',
   },
   googleBooksAPI: {
-    url: 'https://www.googleapis.com/books/v1/volumes?q='
+    url: 'https://www.googleapis.com/books/v1/volumes'
   }
 };
