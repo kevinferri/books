@@ -22,8 +22,6 @@ exports.getGoogleBooks = function(query, done) {
 exports.getGoogleBook = function(id, done) {
   var url = config.googleBooksAPI.url + "/" + id;
 
-  console.log(url);
-
   request({ url: url, json: true }, function(err, response, body) {
     if (err) {
       return done(err);
